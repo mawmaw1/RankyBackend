@@ -1,0 +1,21 @@
+<div class="jumbotron">
+    <h3>Match overview</h3>
+</div>
+
+<div ng-controller="matchesCtrl">
+    <div class="table-responsive" style="margin-left: auto; margin-right: auto;width: 80%">
+        <table class="table table-striped">
+            <thead>
+            <tr><th>Team1</th><th>Score1</th><th>Team2</th><th>Score2</th></tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="match in winningMatches | orderBy: '[]': true">
+                <td ng-style="customStyle1.style">{{match.player1.name + " & " + match.player2.name}}</td>
+                <td ng-style="customStyle1.style">{{match.score1}}</td>
+                <td ng-style="customStyle2.style">{{match.player3.name + " & " + match.player4.name}}</td>
+                <td ng-style="customStyle2.style">{{match.score2}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
