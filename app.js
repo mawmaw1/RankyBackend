@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 require("./config/database");
-var routes = require('./routes/index');
+
 var project = require('./routes/project');
 var players = require('./routes/players');
 var matches = require('./routes/matches')
@@ -21,12 +21,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/ranky', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/ranky/api', project);
-app.use('/ranky/api',players);
-app.use('/ranky/api', matches);
+
+app.use('/api', project);
+app.use('/api',players);
+app.use('/api', matches);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

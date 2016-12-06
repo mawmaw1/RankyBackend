@@ -1,0 +1,27 @@
+<div ng-controller="NewMatches">
+<form ng-submit="newMatch(match)">
+    <div class="list">
+        <label class="item item-input">
+            <select ng-model="match.player1" ng-options="player.name for player in players"></select>
+        </label>
+        <label class="item item-input">
+            <select ng-model="match.player2" ng-options="player.name for player in players"></select>
+        </label>
+        <label class="item item-input">
+            <select ng-model="match.score1" ng-options="n for n in [] | range:0:11"></select>
+        </label>
+        <label class="item item-input">
+            <select ng-model="match.player3" ng-options="player.name for player in players"></select>
+        </label>
+        <label class="item item-input">
+            <select ng-model="match.player4" ng-options="player.name for player in players"></select>
+        </label>
+        <label class="item item-input">
+            <select ng-model="match.score2" ng-options="n for n in [] | range:0:11"></select>
+        </label>
+    </div>
+    <div class="padding">
+        <button type="submit" class="button button-block button-positive">Create Match</button>
+    </div>
+</form>
+</div>
