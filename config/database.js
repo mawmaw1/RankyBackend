@@ -3,13 +3,7 @@ var MongoClient = require('mongodb').MongoClient
 function getConnectionString(connection_string) {
 
 
-  if (process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
-    connection_string = 'mongodb://' + process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
-      process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
-      process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
-      process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
-      process.env.OPENSHIFT_APP_NAME;
-  }
+    var connection_string = "mongodb://mawmaw:ranky1337@ds119748.mlab.com:19748/ranky"
   return connection_string;
 }
 var connection;
