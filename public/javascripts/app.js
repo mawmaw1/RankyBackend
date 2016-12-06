@@ -1,6 +1,6 @@
 var TIMER_VALUE = 5000;
 
-var HOST = "http://localhost:3010";
+var HOST = "http://139.59.211.36/ranky";
 
 
 angular.module("players", ['ngRoute'])
