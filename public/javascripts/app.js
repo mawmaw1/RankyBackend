@@ -87,7 +87,7 @@ angular.module("players", ['ngRoute'])
 
 
     }
-}).controller('NewMatches', function ($http, $scope, $timeout, Matches) {
+}).controller('NewMatches', function ($http, $scope, $timeout, Matches, $location) {
 
     $timeout(getPlayers, 0);
 
@@ -122,6 +122,8 @@ angular.module("players", ['ngRoute'])
 
         Matches.saveMatch(newMatch, $scope);
         updatePlayers(newMatch);
+        alert("Match was succesfully created!")
+        $location.path("/Ranking")
 
     }
 var updatePlayers = function(match)
