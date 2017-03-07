@@ -60,19 +60,6 @@ router.put("/players", function (req, res) {
 
 });
 
-// router.put("/players/:id", function(req, res){
-//     var player = req.body;
-//     var db = connection.get();
-//     delete player._id;
-//     db.collection("players").replaceOne({_id:new ObjectId(req.params.id)},player, function(err, result){
-//         if(err){
-//             res.status(500);
-//             return res.json({code: 500, msg: "Could not update the provided player: "+err})
-//         }
-//         console.log("Result: "+result);
-//         return res.json(result);
-//     })
-// })
 
 router.delete("/players", function (req, res) {
     var player = req.body;
