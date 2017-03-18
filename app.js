@@ -1,5 +1,5 @@
 var express = require('express');
-var cors = require('cors');
+
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -11,8 +11,6 @@ var project = require('./routes/project');
 var players = require('./routes/players');
 var matches = require('./routes/matches')
 var app = express();
-app.use(cors());
-app.options('*', cors());
 
 
 // view engine setup
