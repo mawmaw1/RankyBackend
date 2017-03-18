@@ -21,20 +21,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/rankyTest', express.static(path.join(__dirname, 'public')));
 
 
-app.use('/ranky/api', project);
-app.use('/ranky/api',players);
-app.use('/ranky/api', matches);
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+// REMEMBER TO REMOVE THESE ACCESSES BEFORE GOING LIVE
 // Add headers
 app.use(function (req, res, next) {
+
 
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -52,6 +44,21 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
+
+
+app.use('/rankyTest', express.static(path.join(__dirname, 'public')));
+
+
+app.use('/ranky/api', project);
+app.use('/ranky/api',players);
+app.use('/ranky/api', matches);
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
 // error handlers
 
 // development error handler
