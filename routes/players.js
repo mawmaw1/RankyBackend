@@ -55,7 +55,7 @@ router.put("/players", function (req, res) {
             return res.json({code: 500, msg: "Could not update the provided player: "+err})
         }
         console.log("Result: "+result);
-        return res.json(result);
+        return res.json(player);
     });
 
 });
