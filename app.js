@@ -54,9 +54,9 @@ app.use(cookieParser());
 app.use('/rankyTest', express.static(path.join(__dirname, 'public')));
 
 
-app.use('/ranky/api', project);
-app.use('/ranky/api',players);
-app.use('/ranky/api', matches);
+app.use('/rankyTest/api', project);
+app.use('/rankyTest/api',players);
+app.use('/rankyTest/api', matches);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
