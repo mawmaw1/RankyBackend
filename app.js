@@ -12,7 +12,7 @@ var players = require('./routes/players');
 var matches = require('./routes/matches')
 var app = express();
 app.use(cors());
-
+app.options('*', cors());
 
 
 // view engine setup
