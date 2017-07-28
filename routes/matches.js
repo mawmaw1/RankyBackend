@@ -43,6 +43,7 @@ router.get("/matches/multiple", function (req, res) {
 router.post("/matches", function (req, res) {
     var match = req.body;
     var db = connection.get();
+
     db.collection("matches").insertOne(match, function (err, r) {
         if (err) {
             res.status(500);
@@ -52,20 +53,7 @@ router.post("/matches", function (req, res) {
         console.log(newMatch);
         return res.json(match);
     })
-    // var id1 = new ObjectId(match.player1._id);
-    // var id2 = new ObjectId(match.player2._id);
-    // var id3 = new ObjectId(match.player3._id);
-    // var id4 = new ObjectId(match.player4._id);
-    //
-    // db.collection("players").find({_id: {$in: [id1, id2, id3, id4]}}).toArray(function (err, result) {
-    //     if (err) {
-    //         res.status(500);
-    //         return res.json({code: 500, msg: "Could not get the provided post: " + err})
-    //     }
-
-
-    // })
-    updatePlayers(match)
+    //updatePlayers(match)
 })
 
 
@@ -115,10 +103,10 @@ var updatePlayers = function (match) {
         match.player2.score += endresult;
         match.player3.score -= endresult;
         match.player4.score -= endresult;
-        putUpdatedPlayers(match.player1)
-        putUpdatedPlayers(match.player2)
-        putUpdatedPlayers(match.player3)
-        putUpdatedPlayers(match.player4)
+        putUpdatedPlayersWin(match.player1)
+        putUpdatedPlayersWin(match.player2)
+        putUpdatedPlayersLoss(match.player3)
+        putUpdatedPlayersLoss(match.player4)
 
 
     } else {
@@ -132,15 +120,41 @@ var updatePlayers = function (match) {
         match.player4.score += endresult;
         match.player1.score -= endresult;
         match.player2.score -= endresult;
-        putUpdatedPlayers(match.player1)
-        putUpdatedPlayers(match.player2)
-        putUpdatedPlayers(match.player3)
-        putUpdatedPlayers(match.player4)
-
+        putUpdatedPlayersLoss(match.player1)
+        putUpdatedPlayersLoss(match.player2)
+        putUpdatedPlayersWin(match.player3)
+        putUpdatedPlayersWin(match.player4)
 
     }
 }
-var putUpdatedPlayers = function (player) {
+
+var winningTeamPutter = function(match){
+
+}
+
+
+
+
+var putUpdatedPlayersWin = function (player) {
+    var id = new ObjectId(player._id);
+    var db = connection.get();
+    delete player._id;
+    player.totalWins++;
+    player.currentWinningStreak++;
+
+    if(player.currentWinningStreak > player.totalWinningStreak){
+        player.totalWinningStreak = player.currentWinningStreak;
+    }
+
+    db.collection("players").replaceOne({_id: id}, player, function (err, result) {
+        if (err) {
+            console.log("error")
+        }
+        console.log("Result: " + result);
+    });
+}
+
+var putUpdatedPlayersLoss = function (player) {
     var id = new ObjectId(player._id);
     var db = connection.get();
     delete player._id;

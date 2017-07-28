@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient
 
-function getConnectionString(connection_string) {
+function getConnectionString() {
 
 
    // var connection_string = "mongodb://mawmaw:ranky1337@ds119748.mlab.com:19748/ranky"
@@ -10,9 +10,9 @@ function getConnectionString(connection_string) {
 }
 var connection;
 
-var connect = function(connectionString, done) {
+var connect = function(done) {
   if (connection) return done();
-  var url = getConnectionString(connectionString);
+  var url = getConnectionString();
   console.log(url);
   MongoClient.connect(url, function(err, db) {
     if (err){

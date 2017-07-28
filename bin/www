@@ -29,8 +29,8 @@ var server = http.createServer(app);
 
 
 var db = require("../config/database");
-var connection_string = "mongodb://mawmaw:ranky1337@ds119748.mlab.com:19748/ranky"
-db.connect(connection_string,function(err){
+var connection_string = "mongodb://mawmaw:ranky1337@ds119748.mlab.com:19748/testranky"
+db.connect(function(err){
   if(err){
     console.log("Could not connect to Database");
     return;
